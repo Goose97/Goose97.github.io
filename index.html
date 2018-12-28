@@ -1,0 +1,533 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="./stylesheet.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+      integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"
+      crossorigin="anonymous"
+    />
+    <link href="https://fonts.googleapis.com/css?family=Aleo:300,300i,400,400i,700,700i" rel="stylesheet">
+  </head>
+  <body>
+    <div class="banner__wraper">
+      <img class="banner__image" src="./Background-Yellow-black.png" alt="" />
+      <a class="banner__down-button" style="bottom: 18%">
+        <img src="./double-down-arrow.png" alt=""
+      /></a>
+    </div>
+
+    <div class="main-content__wraper">
+      <h2 id='main-content'>Click to learn new ES6 concepts</h2>
+      <div class="main-content__row-1">
+        <a id="0" class="individual-concept__wraper"
+          ><p class="individual-concept__text">Const / Let</p>
+        </a>
+        <a id="1" class="individual-concept__wraper">
+          <p class="individual-concept__text">Enhanced Object Literal</p>
+        </a>
+        <a id="2" class="individual-concept__wraper">
+          <p class="individual-concept__text">Template Literal</p>
+        </a>
+        <a id="3" class="individual-concept__wraper">
+          <p class="individual-concept__text">Destructuring</p>
+        </a>
+      </div>
+      <div class="main-content__row-2">
+        <a id="4" class="individual-concept__wraper">
+          <p class="individual-concept__text">Arrow Function</p>
+        </a>
+        <a id="5" class="individual-concept__wraper">
+          <p class="individual-concept__text">Modules</p>
+        </a>
+        <a id="6" class="individual-concept__wraper">
+          <p class="individual-concept__text">Spread / Rest</p>
+        </a>
+      </div>
+      <div class="popup-modal__background">
+        <div class="popup-modal__content">
+          <h2>Const and Let</h2>
+          <h3>What is the difference between <em>Const</em> and <em>Let</em>?</h3>
+          <p>
+            ES6 introduces us with two new ways to declare a variable, which are
+            <strong><em>const</em></strong> and <strong><em>let</em></strong>. Like their name suggest <strong><em>const</em></strong>
+            create a variable which
+            has an <em>immutable reference</em> (more on that later) while <strong><em>let</em></strong> allows you
+            to change its reference/value later in the code. Look at this
+            example:
+          </p>
+          <pre class="prettyprint">
+                    let a = 2; <n />
+                    a = 4; //Uncaught TypeError: Assignment to constant variable.<br />
+                    const b = 2; <n />
+                    b = 4; //Uncaught TypeError: Assignment to constant variable.<n />
+                </pre>
+          <span><em>Unable to re-assign</em></span>
+          <p>So Javascript now really has its long-awaited immutability? Not so fast. The immutability only comes with the
+            reference which the variable is holding, not the value of the reference. In other words, it just prevents us from
+            assigning a new reference to it, not changing the reference's value.</p>
+          <pre class='prettyprint'>
+                  const a = { value: 2 }; <n />
+                  a = { value: 3 } //Uncaught TypeError: Assignment to constant variable <n />
+                  a.value++; <n />
+                  console.log(a) //{ value:3 } <n />
+                </pre>
+          <span><em>But it's not the case with mutating the value</em></span>
+          <h3>But what is the difference between <em>Let</em> and <em>Var</em> then?
+          </h3>
+          <p>Ahh, good question. <strong><em>Const</em></strong> and <strong><em>let</em></strong> come with a new concept
+            called Block Scope. Variables declared with <strong><em>const</em></strong> and <strong><em>let</em></strong>
+            have block scope, which means they are accessible only inside the scope. And <strong><em>var</em></strong> as we
+            all know, create variables which have function scope, which led us to this infamous bug-like behavior:</p>
+          <pre class='prettyprint'>
+                {
+                  let a = 2;
+                  const b = 2;
+                  var c = 2;
+                }
+                console.log(a)  //Uncaught ReferenceError: b is not defined
+                console.log(b)  //Uncaught ReferenceError: b is not defined
+                console.log(c)  //2
+              </pre>
+          <span><em>You can't access let and const variables outside the block it gets initiated</em></span>
+          <pre class='prettyprint'>
+                  for (var i = 0; i < 5; i++) {
+                    setTimeout(function() {
+                      console.log(i);
+                    }, 1000*(i+1));
+                  }
+                  //5 5 5 5 5
+                  // print out 5 five times (what!?)
+                  
+                  for (let i = 0; i < 5; i++) {
+                    setTimeout(function() {
+                      console.log(i);
+                    }, 1000*(i+1));
+                  }
+                  //0 1 2 3 4 
+                  // Oh, here's what I intended
+              </pre>
+          <span><em>What kind of sorcery is this?</em></span>
+          <p>The explanation is very simple. The first case with <strong><em>var</em></strong>, it created a function scope
+            variable, which in this case is in a global variable. After the loop, five setTimeout are looking for the
+            variable i to print out, and of course, they found it in as a global variable. There is only one i variable the
+            entire time the code executed, that's why five console.log() printed out the exact same value 5 - which is the
+            final value of this variable.</p>
+          <p>On the other hand, <strong><em>let</em></strong> declares a variable for each iteration and each of them lives
+            (happily) inside a block - which is the body of the for-loop. That means there are five different i variable when
+            the loop is over, therefore they all (thanks to closure) find the exact i to prints out. </p>
+          <p>Another thing worth mentioning is while <strong><em>var</em></strong> declaration gets hoisted to the top of the
+            scope, <strong><em>const</em></strong> and <strong><em>let </em></strong> doesn't. So the best practice is,
+            always declare all variable appropriately (with <strong><em>const</em></strong> or <strong><em>let</em></strong>)
+            at the top of the block</p>
+          <pre class="prettyprint">
+                  console.log(a)  //Uncaught ReferenceError: a is not defined
+                  console.log(b)  //Uncaught ReferenceError: a is not defined
+                  console.log(c) // undefined
+                  let a = 2;
+                  const b=2;
+                  var c = 2;
+              </pre>
+          <span><em>A subtle but quite tricky feature</em></span>
+          <div class="popup-modal__close-button">
+            <i class="fas fa-times-circle"></i>
+          </div>
+          <div class='popup-modal__next-button'>
+            <i class="fas fa-angle-right"></i>
+          </div>
+          <div class="popup-modal__previous-button">
+            <i class="fas fa-angle-left"></i>
+          </div>
+        </div>
+      </div>
+      <div class="popup-modal__background">
+        <div class="popup-modal__content">
+          <h2>Enhanced Object Literal</h2>
+          <p>Enhanced object literals make it easy to quickly create objects with properties inside the curly braces. To create an object, you can simply notate a list of key: value pairs delimited by commas. ES6 makes the declaring of object literals concise and thus easier. And it does it in three different ways:</p>
+          <ul>
+            <li>1. It provides a shorthand syntax for initializing properties from variables.</li>
+            <li>2. It provides a shorthand syntax for defining function methods.</li>
+            <li>3. It enables the ability to have computed property names in an object literal definition.</li>
+          </ul>
+          <p>Ok, that's a lot of words. You might be confused by now, so let's examine each of them with these examples</p>
+          <pre class="prettyprint">
+            //Old way
+              let name = 'Goose';
+              let age = 21;
+              let personInfo = {
+                name: name,
+                age: age,
+                isLegalToBuyBeers: function() {
+                  return this.age >= 21 ? true : false
+                }
+              };
+              console.log(personInfo) // {name: "Goose", age: 21, isLegalToBuyBeers: ƒ}
+              
+            //New way
+              let name = 'Goose';
+              let age = 21;
+              let personInfo = {
+                  name,
+                  age,
+                  isLegalToBuyBeers() {
+                      return this.age >= 21 ? true : false
+                  }
+              };
+              console.log(personInfo) // {name: "Goose", age: 21, isLegalToBuyBeers: ƒ}</pre>
+              <span><em>Shorter and more concise</em></span>
+              <pre class="prettyprint">
+              let property1 = 'name';
+              let property2 = 'age';
+              let personInfo = {
+                [property1] : 'Goose',
+                [property2] : 21
+              }
+                </pre>
+              <span><em>It might be useful in some cases. I don't know</em></span>
+          <div class="popup-modal__close-button">
+            <i class="fas fa-times-circle"></i>
+          </div>
+          <div class='popup-modal__next-button'>
+            <i class="fas fa-angle-right"></i>
+          </div>
+          <div class="popup-modal__previous-button">
+            <i class="fas fa-angle-left"></i>
+          </div>
+        </div>
+      </div>
+      <div class="popup-modal__background">
+        <div class="popup-modal__content">
+          <h2>Template Literal</h2>
+          <p>The first time I saw this new feature, I felt a huge relief. Really. Just because I no longer have to do this anymore:</p>
+          <pre class="prettyprint">
+              let name = 'Goose';
+              let age = 21;
+              let nationality = 'Vietnam';
+              let marriageStatus = 'single';
+              let briefIntroduction = 'Hi everyone, my name is ' + name + '.' + ' I\'m ' + age + ' and I\'m from ' + nationality + '. ' + 'I\'m ' 
+              + marriageStatus;
+              console.log(briefIntroduction);   //Hi everyone, I'm Goose. I'm 21 and I'm from Vietnam. I'm single
+          </pre>
+          <span><em>I swear I will never do this again. I swear!!</em></span>
+          <p>OK, so what is the right way to do it, or known as the ES6 way. Drum roll please: with `this`. I mean the small backticks capture this word, yeah that's it. Aside from quotes and double quotes, now you have another way to denote strings or Template Literal Strings, which allows you to: </p>
+          <ul>
+            <li>1. Multi-line strings: A single string can span two or more lines</li>
+            <li>2. Expression Interpolation: Javascript variables and expressions can be inserted directly in the string.</li>
+          </ul>
+          <p>Let look at the syntax and also how it handles the above nuisance:</p>
+          <pre class="prettyprint">
+              let name = 'Goose';
+              let age = 21;
+              let nationality = 'Vietnam';
+              let marriageStatus = 'single';
+              let briefIntroduction = `Hi everyone, I'm ${name}. I'm ${age} and I'm from ${nationality}. I'm ${marriageStatus}`;
+              console.log(briefIntroduction)  //Hi everyone, I'm Goose. I'm 21 and I'm from Vietnam. I'm single
+          </pre>
+          <span><em>Sweet sweet syntactic sugar!!</em></span>
+          <div class="popup-modal__close-button">
+            <i class="fas fa-times-circle"></i>
+          </div>
+          <div class='popup-modal__next-button'>
+            <i class="fas fa-angle-right"></i>
+          </div>
+          <div class="popup-modal__previous-button">
+            <i class="fas fa-angle-left"></i>
+          </div>
+        </div>
+      </div>
+      <div class="popup-modal__background">
+        <div class="popup-modal__content">
+          <h2>Destructuring</h2>
+          <p>Think of objects and arrays like machines which consist of many parts, known as property. But what if you want to pull out those parts, or in the coding world, assign those properties to variables. Destructuring allows you to do so in a much more elegant manner. Destructuring assignment allows you to assign the properties of an array or object to variables using syntax that looks similar to array or object literals. This syntax can be extremely terse, while still exhibiting more clarity than the traditional property access. OK let's look at how it works:</p>
+          <pre class="prettyprint">
+              // Old way
+              let laptops = ['Macbook', 'Asus',  'Dell'];
+              let firstLaptop = laptops[0];
+              let secondLaptop = laptops[1];
+              let thirdLaptop = laptops[2];
+              console.log(firstLaptop, secondLaptop, thirdLaptop);  //Macbook Asus Dell
+              
+              // New way
+              let laptops = ['Macbook', 'Asus',  'Dell'];
+              let [firstLaptop, secondLaptop, thirdLaptop] = laptops;
+              console.log(firstLaptop, secondLaptop, thirdLaptop);  //Macbook Asus Dell
+          </pre>
+          <span><em>Those variable will 'pull out' the properties based on the order they get arranged</em></span>
+          <pre class="prettyprint">
+              //Old way
+              let personInfo = {
+                  name: 'Goose',
+                  age: 21,
+                  nationality: 'Vietnam'
+              };
+              let name = personInfo.name;
+              let age = personInfo.age;
+              let nationality = personInfo.nationality;
+              console.log(name, age, nationality);   // Goose 21 Vietnam
+              
+              //New way
+              let personInfo = {
+                name: 'Goose',
+                age: 21,
+                nationality: 'Vietnam'
+              };
+              let {name, age, nationality} = personInfo;
+              console.log(name, age, nationality);   // Goose 21 Vietnam
+          </pre>
+          <span><em>Pulling out properties by their names</em></span>
+          <p>There are so many cool things you can do with destructuring. Here, let me show you some cool tricks which I found very useful:</p>
+          <pre class="prettyprint">
+              //Deep destructuring assignment
+              let personInfo = {
+                  name: 'Goose',
+                  age: 21,
+                  nationality: 'Vietnam',
+                  laptopsOwn : ['Macbook', ['Asus', 'AsusROG'],  'Dell']
+              };
+              let {laptopsOwn: [firstLaptop,[firstAsus, secondAsus], thirdLaptop]} = personInfo;
+              console.log(firstLaptop, firstAsus, secondAsus, thirdLaptop);  // Macbook Asus AsusROG Dell
+              
+              //Swap value of two variable (without a temporary holder)
+              let a = 2;
+              let b = 5;
+              [a,b] = [b,a];
+              console.log(`a = ${a} and b = ${b}`);  // a = 5 and b = 2
+              
+              //Importing from external libraries (you'll see this pattern a lot in frameworks like React)
+              import {Component, Fragment} from 'react';
+          </pre>
+          <span><em>And many other cool shits</em></span>
+          <div class="popup-modal__close-button">
+            <i class="fas fa-times-circle"></i>
+          </div>
+          <div class='popup-modal__next-button'>
+            <i class="fas fa-angle-right"></i>
+          </div>
+          <div class="popup-modal__previous-button">
+            <i class="fas fa-angle-left"></i>
+          </div>
+        </div>
+      </div>
+      <div class="popup-modal__background">
+        <div class="popup-modal__content">
+          <h2>Arrow Function</h2>
+          <h3>What is arrow function?</h3>
+          <p>Arrow functions (also called “fat arrow functions”) are undoubtedly one of the more popular features of ES6. They introduced a new way of writing concise functions. Here is a function written in ES5 syntax: </p>
+          <pre class="prettyprint">
+            function timesTwo (number) {
+              return number*2;
+            };
+            timesTwo(2) ;  //4
+          </pre>
+          <p>Now, here is the same function expressed as an arrow function:</p>
+          <pre class="prettyprint">
+            let timesTwo = number => number * 2
+            timesTwo(2);  // 4
+          </pre>
+          <span><em>Obviously this syntax is more concise and neat.
+          </em></span>
+          <p>But arrow function is not just a syntactic sugar or a new, enhanced way to write old function. It actually has some really cool features, which makes it behave differently compare with pre-ES6 function.
+          </p>
+          <p>OK first let's talk about the changes in syntax. Instead of using the reserved keyword function, you can now use a '=>' to represent a function. The left side is arguments and the right side is the body of the function. The rules are pretty simple:</p>
+          <ul>
+            <li>1. If you only have one argument, you can omit the parentheses. Remember the non-argument function still parentheses like this: () => {body of the function here}</li>
+            <li>2. If your body function only has one line, you can omit the curly braces and the return statement. That line will be regarded as your return statement (implicit return)</li>
+          </ul>
+          <p>But the main benefit of arrow function is the lexical bounding of this value. In classic function expressions, the this keyword is bound to different values based on the context in which it is called. With arrow functions, however, this is lexically bound. It means that it uses this from the code that contains the arrow function. For example, look at the setTimeout function below:</p>
+          <pre class="prettyprint">
+            // ES5
+                let obj = {
+                  id: 42,
+                  counter: function counter() {
+                    setTimeout(function() {
+                      console.log(this.id);
+                    }.bind(this), 1000);
+                  }
+                };
+          </pre>
+          <p>In the ES5 example, .bind(this) is required to help pass the this context into the function. Otherwise, by default this would be undefined.</p>
+          <pre class="prettyprint">
+            // ES6
+                let obj = {
+                  id: 42,
+                  counter: function counter() {
+                    setTimeout(() => {
+                      console.log(this.id);
+                    }, 1000);
+                  }
+                };
+          </pre>
+          <p>ES6 arrow functions can’t be bound to a this keyword, so it will lexically go up a scope, and use the value of this in the scope in which it was defined.
+          </p>
+          <h3>Well, so should I abandon the old function keyword and stick with arrow function from now on?</h3>
+          <p>Not really, arrow function has some particularly disadvantages and in some cases, you might not want to use them</p>
+          <ul>
+            <li>1. Don't use arrow function as an object method if you try using this binding. It will result in some unexpected result since it has no this value itself. </li>
+            <pre class="prettyprint">
+              let cat = {
+                lives: 9,
+                jumps: () => {
+                  this.lives--;
+                }
+              };
+              cat.jumps();
+              console.log(cat.lives)  //9 . Aww not 8
+            </pre>
+            <li>2. If you need your context to be dynamic, arrow functions are not the right choice. Take a look at this event handler below:</li>
+            <pre class="prettyprint">
+              let button = document.getElementById('press');
+              button.addEventListener('click', () => {
+                this.classList.toggle('on');
+              });
+            </pre>
+            <span><em>If we click the button, we would get a TypeError. It is because this is not bound to the button, but instead bound to its parent scope.</em></span>
+            <li>3. Arrow functions are always anonymous function, so it makes everything harder in debugging.</li>
+          </ul>
+          <div class="popup-modal__close-button">
+            <i class="fas fa-times-circle"></i>
+          </div>
+          <div class='popup-modal__next-button'>
+            <i class="fas fa-angle-right"></i>
+          </div>
+          <div class="popup-modal__previous-button">
+            <i class="fas fa-angle-left"></i>
+          </div>
+        </div>
+      </div>
+      <div class="popup-modal__background">
+        <div class="popup-modal__content">
+          <h2>Modules</h2>
+          <div class="popup-modal__close-button">
+            <i class="fas fa-times-circle"></i>
+          </div>
+          <div class='popup-modal__next-button'>
+            <i class="fas fa-angle-right"></i>
+          </div>
+          <div class="popup-modal__previous-button">
+            <i class="fas fa-angle-left"></i>
+          </div>
+        </div>
+      </div>
+      <div class="popup-modal__background">
+        <div class="popup-modal__content">
+          <h2>Spread/Rest</h2>
+          <p>Javascript's ECMA6 came out with some cool new features; ... is one of these new Javascript functionalities. It can be used in two different ways; as a spread operator OR as a rest parameter.</p>
+          <ul>
+            <li>1. Rest parameter: collects all remaining elements into an array.</li>
+            <li>2. Spread operator: allows iterables( arrays / objects / strings ) to be expanded into single arguments/elements.
+            </li>
+          </ul>
+          <p>Let's look at some example to better understand these cool features:
+          </p>
+          <h3>Rest Parameter</h3>
+          <p>From the definition we saw earlier, rest parameters collect all the remaining elements into an array. This allows us to do really neat function definitions. Let's see how we put them to use.
+          </p>
+          <pre class="prettyprint">
+            function add(x, y) {
+              return x + y;
+            }
+            
+            add(1, 2, 3, 4, 5) // returns 3
+          </pre>
+          <p>The above function call returns 3, this is because in Javascript it is possible to call a function with any number of arguments. However, only the first two arguments will be counted.
+          </p>
+          <p>With rest parameters, we can gather any number of arguments into an array and do what we want with them. So we can re-write the add function like this:
+          </p>
+          <pre class="prettyprint">
+            function add(...args) {
+              let result = 0;
+            
+              for (let arg of args) result += arg;
+            
+              return result
+            }
+            
+            add(1) // returns 1
+            add(1,2) // returns 3
+            add(1, 2, 3, 4, 5) // returns 15
+            
+          </pre>
+          <span><em>In pre-ES6, we will have to use <strong><em>arguments</em></strong> variable to do this</em></span>
+          <p>Remember that rest parameter should always be the last argument since it literally means collect all the remaining arguments into one array.
+          </p>
+          <h3>Spread Operators</h3>
+          <p>The spread operator allows us to expand elements. With rest parameters we were able to get a list of arguments into an array. spread operators however, let us unpack elements in an array to single/individual arguments.
+          </p>
+          <p>Some scenarios where this capability is useful include:
+          </p>
+          <pre class="prettyprint">
+            //New way to add element into an array
+            const arr = ["Joy", "Wangari", "Warugu"];
+            const newArr = ["joykare", ...arr];   //[ 'Joy', 'Wangari', 'Warugu', 'joykare' ].
+
+            //Shallow copy an array
+            const arr = [1, 2, 3];
+            const arr2 = [...arr];  //[1,2,3]
+            arr.push(4);
+            arr2 // [1,2,3]
+
+            //Pass elements of an array as separate arguments
+            function add(a, b, c) {
+              return a + b + c ;
+            }
+            const args = [1, 2, 3];
+            add(...args);
+          </pre>
+          <div class="popup-modal__close-button">
+            <i class="fas fa-times-circle"></i>
+          </div>
+          <div class='popup-modal__next-button'>
+            <i class="fas fa-angle-right"></i>
+          </div>
+          <div class="popup-modal__previous-button">
+            <i class="fas fa-angle-left"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="quiz__wraper">
+      <h2>Quiz Test</h2>
+      <div class="quiz__intro">
+        <h3>Now you have learned some new concepts about ES6. Let's try to do some simple question about those knowledge.</h3>
+        <a class="quiz__start-button">
+          Start the quiz
+        </a>
+      </div>
+      <div class="quiz__main-content">
+        <div class="quiz__information-box">
+          <p class='quiz__question'>What is the keyword you use to declare a constant in ES6?</p>
+          <img src="" id='code-sample'>
+          <div>
+            <span class='quiz__score'>Your score: 0</span>
+            <a class='quiz__submit-button'>Submit</a>
+          </div>
+        </div>
+        <div class="quiz__answers-box">
+          <a class="individual-answer__wraper">
+            <div class="individual-answer__checkbox"></div>
+            <p class='individual-answer__answer-content'>123123</p>
+          </a>
+          <a class="individual-answer__wraper">
+            <div class="individual-answer__checkbox"></div>
+            <p class='individual-answer__answer-content'>123123</p>
+          </a>
+          <a class="individual-answer__wraper">
+            <div class="individual-answer__checkbox"></div>
+            <p class='individual-answer__answer-content'>123123</p>
+          </a>
+          <a class="individual-answer__wraper">
+            <div class="individual-answer__checkbox"></div>
+            <p class='individual-answer__answer-content'>123123</p>
+          </a>
+        </div>
+      </div>
+      <div class="quiz__final-result">
+        <p>Congratulation!! You have completed the quiz</p>
+        <p>You have answer correctly 4/5 questions</p>
+      </div>
+    </div>
+    
+  </body>
+  <script src="./script.js"></script>
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+</html>

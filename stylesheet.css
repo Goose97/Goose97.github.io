@@ -1,0 +1,730 @@
+@font-face {
+  font-family: "Milkshake";
+  src: url("./Milkshake.otf") format("opentype");
+}
+
+/* Pretty printing styles. Used with prettify.js. */
+/* Vim sunburst theme by David Leibovic */
+
+pre .str,
+code .str {
+  color: #65b042;
+} /* string  - green */
+pre .kwd,
+code .kwd {
+  color: #e28964;
+} /* keyword - dark pink */
+pre .com,
+code .com {
+  color: #aeaeae;
+  font-style: italic;
+} /* comment - gray */
+pre .typ,
+code .typ {
+  color: #89bdff;
+} /* type - light blue */
+pre .lit,
+code .lit {
+  color: #3387cc;
+} /* literal - blue */
+pre .pun,
+code .pun {
+  color: #fff;
+} /* punctuation - white */
+pre .pln,
+code .pln {
+  color: #fff;
+} /* plaintext - white */
+pre .tag,
+code .tag {
+  color: #89bdff;
+} /* html/xml tag    - light blue */
+pre .atn,
+code .atn {
+  color: #bdb76b;
+} /* html/xml attribute name  - khaki */
+pre .atv,
+code .atv {
+  color: #65b042;
+} /* html/xml attribute value - green */
+pre .dec,
+code .dec {
+  color: #3387cc;
+} /* decimal - blue */
+
+pre.prettyprint,
+code.prettyprint {
+  background-color: #000;
+  border-radius: 8px;
+}
+
+pre.prettyprint {
+  width: 95%;
+  margin: 1em auto;
+  padding: 1em;
+  white-space: pre-wrap;
+}
+
+/* Specify class=linenums on a pre to get line numbering */
+ol.linenums {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #aeaeae;
+} /* IE indents via margin-left */
+li.L0,
+li.L1,
+li.L2,
+li.L3,
+li.L5,
+li.L6,
+li.L7,
+li.L8 {
+  list-style-type: none;
+}
+/* Alternate shading for lines */
+li.L1,
+li.L3,
+li.L5,
+li.L7,
+li.L9 {
+}
+
+@media print {
+  pre .str,
+  code .str {
+    color: #060;
+  }
+  pre .kwd,
+  code .kwd {
+    color: #006;
+    font-weight: bold;
+  }
+  pre .com,
+  code .com {
+    color: #600;
+    font-style: italic;
+  }
+  pre .typ,
+  code .typ {
+    color: #404;
+    font-weight: bold;
+  }
+  pre .lit,
+  code .lit {
+    color: #044;
+  }
+  pre .pun,
+  code .pun {
+    color: #440;
+  }
+  pre .pln,
+  code .pln {
+    color: #000;
+  }
+  pre .tag,
+  code .tag {
+    color: #006;
+    font-weight: bold;
+  }
+  pre .atn,
+  code .atn {
+    color: #404;
+  }
+  pre .atv,
+  code .atv {
+    color: #060;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.header__wraper {
+  background-color: #2c3e50;
+  padding-left: 15px;
+}
+
+.header__title {
+  line-height: 40px;
+  font-size: 20px;
+  color: #f5de19;
+  margin: 0;
+}
+
+.banner__wraper {
+  position: relative;
+}
+
+.banner__image {
+  width: 100%;
+}
+
+.banner__down-button {
+  position: absolute;
+  right: 27%;
+  bottom: 18%;
+  width: 35px;
+  height: 35px;
+  opacity: 0.75;
+  transition: transform 0.3s ease-in-out;
+  animation: bouncingUpAndDown 4.5s ease-in-out 1s infinite;
+}
+
+.banner__down-button:hover {
+  cursor: pointer;
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+@keyframes bouncingUpAndDown {
+  0% {
+    bottom: 18%;
+  }
+  10% {
+    bottom: 22%;
+  }
+  20% {
+    bottom: 18%;
+  }
+  30% {
+    bottom: 22%;
+  }
+  40% {
+    bottom: 18%;
+  }
+  100% {
+    bottom: 18%;
+  }
+}
+
+.banner__down-button > img {
+  width: 100%;
+}
+
+.main-content__wraper {
+  padding: 20px 20px;
+  background-color: #f1f4f9;
+}
+
+.main-content__wraper > h2 {
+  font-family: "Aleo", serif;
+  font-size: 35px;
+  display: flex;
+  justify-content: center;
+}
+
+.main-content__row-1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 30px;
+}
+
+.main-content__row-2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 19.3%;
+}
+
+.individual-concept__wraper {
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  background-color: #17222c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.individual-concept__text {
+  font-size: 25px;
+  color: #f5de19;
+  font-family: "Milkshake";
+  text-align: center;
+  transition: 0.2s linear;
+}
+
+.individual-concept__wraper:hover .individual-concept__text {
+  transform: scale(1.05);
+  color: #17222c;
+}
+
+.individual-concept__wraper::before {
+  content: "";
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  background-color: #f5de19;
+  transform: rotate(45deg);
+  left: -110%;
+  top: 90%;
+}
+
+.individual-concept__wraper:hover {
+  cursor: pointer;
+}
+
+.individual-concept__wraper:hover::before {
+  animation: aaa 0.6s 1;
+  top: -10%;
+  left: -10%;
+}
+
+@keyframes aaa {
+  0% {
+    left: -110%;
+    top: 90%;
+  }
+  100% {
+    top: -10%;
+    left: -10%;
+  }
+}
+
+.popup-modal__background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  background-color: rgb(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+  animation: modalOpen 0.6s ease-out;
+}
+
+.popup-modal__close-button {
+  position: absolute;
+  top: 5%;
+  right: 3%;
+  font-size: 30px;
+  opacity: 0.5;
+}
+
+.popup-modal__close-button:hover,
+.popup-modal__close-button:focus {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.popup-modal__content {
+  width: 85%;
+  height: 85%;
+  background-color: white;
+  padding: 0px 55px;
+  border-radius: 8px;
+  position: relative;
+  box-shadow: 8px 12px rgba(0, 0, 0, 0.3);
+  max-height: 2000px;
+  overflow: scroll;
+}
+
+@keyframes modalOpen {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes modalClose {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.popup-modal__content > h2 {
+  text-align: center;
+  font-family: "Milkshake";
+  font-size: 30px;
+}
+
+.popup-modal__content > h3 {
+  font-family: "Aleo", serif;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.popup-modal__content > p {
+  font-family: "Aleo", serif;
+  font-size: 18px;
+}
+
+.popup-modal__content > span {
+  font-family: "Aleo", serif;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+}
+
+.popup-modal__content > ul > li {
+  font-size: 18px;
+  font-family: "Aleo", serif;
+  list-style-type: none;
+}
+
+.popup-modal__content > ul > span {
+  font-family: "Aleo", serif;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+}
+
+.popup-modal__next-button {
+  font-size: 35px;
+  opacity: 0.5;
+  position: fixed;
+  top: 50%;
+  right: 5.5%;
+}
+
+.popup-modal__previous-button {
+  font-size: 35px;
+  opacity: 0.5;
+  position: fixed;
+  top: 50%;
+  left: 5.5%;
+}
+
+.popup-modal__next-button:hover {
+  opacity: 1;
+}
+
+.popup-modal__previous-button:hover {
+  opacity: 1;
+}
+
+.quiz__wraper {
+  padding: 20px 20px;
+  height: 500px;
+  background-color: #f5de19;
+  position: relative;
+}
+
+.quiz__wraper > h2 {
+  font-family: "Aleo", serif;
+  font-size: 35px;
+  display: flex;
+  justify-content: center;
+}
+
+.quiz__intro > h3 {
+  font-family: "Aleo", serif;
+  font-size: 22px;
+  display: flex;
+  justify-content: center;
+}
+
+.quiz__start-button {
+  width: 250px;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Milkshake";
+  font-size: 35px;
+  border: solid 3px black;
+  border-radius: 125px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-25%);
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.quiz__start-button:hover {
+  background-color: black;
+  opacity: 0.8;
+  color: #f5de19;
+}
+
+.quiz__main-content {
+  display: none;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+
+.quiz__information-box {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-left: 40px;
+  position: relative;
+  animation: slideInFromLeft 1s ease-in-out;
+}
+
+@keyframes slideInFromLeft {
+  from {
+    left: -200px;
+    opacity: 0;
+  }
+  to {
+    left: 0px;
+    opacity: 1;
+  }
+}
+
+.quiz__question {
+  font-family: "Aleo", serif;
+  font-size: 30px;
+}
+
+.quiz__information-box > span {
+  font-family: "Milkshake";
+  font-size: 30px;
+  align-self: flex-end;
+}
+
+.quiz__information-box > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.quiz__score {
+  font-family: "Milkshake";
+  font-size: 30px;
+}
+
+.quiz__information-box > div > a {
+  font-family: "Milkshake";
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.quiz__information-box > div > a:hover {
+  transform: scale(1.05);
+}
+
+.quiz__answers-box {
+  width: 40%;
+  display: flex;
+  background-color: white;
+  flex-direction: column;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  border-radius: 4px;
+  position: relative;
+  animation: slideInFromRight 1s ease-in-out;
+}
+
+@keyframes slideInFromRight {
+  from {
+    left: 200px;
+    opacity: 0;
+  }
+  to {
+    left: 0px;
+    opacity: 1;
+  }
+}
+
+.individual-answer__wraper {
+  background-color: white;
+  flex-grow: 1;
+  border-bottom: solid 1px #eee;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+  transition: 0.6s;
+  position: relative;
+}
+
+.individual-answer__wraper--correct {
+  flex-grow: 1;
+  border-bottom: solid 1px #eee;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+  animation: answerCorrectAppear 1.2s;
+  position: relative;
+  background: #44e632;
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+@keyframes answerCorrectAppear {
+  from {
+    background: white;
+  }
+  to {
+    background: #44e632;
+    opacity: 0.9;
+  }
+}
+
+.individual-answer__wraper--correct::after {
+  content: "";
+  display: block;
+  position: absolute;
+  background: rgba(255, 255, 255, 0.5);
+  width: 80px;
+  height: 100%;
+  left: 30px;
+  top: 0;
+  opacity: 0;
+  filter: blur(25px);
+  transform: translate(-130px) scaleX(-15deg);
+  animation: flashIn1 1.2s;
+}
+
+.individual-answer__wraper--correct::before {
+  content: "";
+  display: block;
+  position: absolute;
+  background: rgba(255, 255, 255, 0.5);
+  width: 160px;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.5s;
+  filter: blur(25px);
+  transform: translateX(-220px) skewX(-15deg);
+  animation: flashIn2 1.2s;
+}
+@keyframes flashIn1 {
+  0% {
+    transform: translateX(0px) skewX(0deg);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateX(700px) skewX(-15deg);
+    opacity: 0.6;
+  }
+}
+
+@keyframes flashIn2 {
+  from {
+    transform: translateX(0px) skewX(0deg);
+    opacity: 0.5;
+  }
+  to {
+    transform: translateX(700px) skewX(-15deg);
+    opacity: 1;
+  }
+}
+
+.individual-answer__wraper--chosen {
+  background-color: white;
+  flex-grow: 1;
+  border-bottom: solid 1px #eee;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.22), 0 4px 4px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  animation: fadeIn 0.2s ease-in;
+}
+
+@keyframes fadeIn {
+  0% {
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0), 0 4px 4px rgba(0, 0, 0, 0);
+  }
+  100% {
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.22), 0 4px 4px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.individual-answer__checkbox {
+  width: 13px;
+  height: 13px;
+  border-radius: 10px;
+  border: 2px solid #5a5a5a;
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.individual-answer__checkbox--checked {
+  width: 13px;
+  height: 13px;
+  border-radius: 10px;
+  border: 2px solid #5a5a5a;
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.individual-answer__checkbox--checked::before {
+  content: "";
+  display: block;
+  border-radius: 10px;
+  width: 13px;
+  height: 13px;
+  background-color: green;
+  animation: checkedBox 0.18s ease-in;
+  transform: scale(1.3);
+}
+
+@keyframes checkedBox {
+  from {
+    transform: scale(0.1);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.individual-answer__checkbox--red {
+  width: 17px;
+  height: 17px;
+  border-radius: 10px;
+  background-color: red;
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.individual-answer__answer-content {
+  font-family: "Aleo", serif;
+}
+
+#code-sample {
+  display: none;
+  border-radius: 10px;
+}
+
+.quiz__final-result {
+  flex-direction: column;
+  align-items: center;
+  display: none;
+  transform: translateY(80px);
+  animation: appear 1s;
+}
+
+@keyframes appear {
+  from {
+    transform: translateY(80px) scale(0.1);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(80px) scale(1);
+    opacity: 1;
+  }
+}
+
+.quiz__final-result > p {
+  font-family: "Aleo", serif;
+  font-size: 25px;
+  font-weight: 900;
+}
