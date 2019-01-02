@@ -11,9 +11,9 @@
   </head>
   <body>
     <div class="banner__wraper">
-      <img class="banner__image" src="./Background-Yellow-black.png" alt="" />
+      <img class="banner__image" src="./img/Background-Yellow-black.png" alt="" />
       <a class="banner__down-button" style="bottom: 18%">
-        <img src="./double-down-arrow.png" alt=""
+        <img src="./img/double-down-arrow.png" alt=""
       /></a>
     </div>
 
@@ -38,7 +38,7 @@
           <p class="individual-concept__text">Arrow Function</p>
         </a>
         <a id="5" class="individual-concept__wraper">
-          <p class="individual-concept__text">Modules</p>
+          <p class="individual-concept__text">Default Parameter</p>
         </a>
         <a id="6" class="individual-concept__wraper">
           <p class="individual-concept__text">Spread / Rest</p>
@@ -328,7 +328,7 @@
           </em></span>
           <p>But arrow function is not just a syntactic sugar or a new, enhanced way to write old function. It actually has some really cool features, which makes it behave differently compare with pre-ES6 function.
           </p>
-          <p>OK first let's talk about the changes in syntax. Instead of using the reserved keyword function, you can now use a '=>' to represent a function. The left side is arguments and the right side is the body of the function. The rules are pretty simple:</p>
+          <p>OK first let's talk about the changes in syntax. Instead of using the reserved keyword function, you can now use a '=>' to represent a function. The left side is Parameters and the right side is the body of the function. The rules are pretty simple:</p>
           <ul>
             <li>1. If you only have one argument, you can omit the parentheses. Remember the non-argument function still parentheses like this: () => {body of the function here}</li>
             <li>2. If your body function only has one line, you can omit the curly braces and the return statement. That line will be regarded as your return statement (implicit return)</li>
@@ -396,7 +396,32 @@
       </div>
       <div class="popup-modal__background">
         <div class="popup-modal__content">
-          <h2>Modules</h2>
+          <h2>Default Parameter</h2>
+          <p>Before ES6 came, people writing Javascript have some interesting way to deal with the default arguments problem. One of the ways is using the short-circuiting technique which leverages the truthy-falsy value evaluation of Javascript. Basically, it is something like this:</p>
+          <pre class="prettyprint">
+            function pushOneToArray(arr) {
+              let array = arr || [];	
+              array.push(1);
+              console.log(array)
+            }
+            
+            pushOneToArray([1, 2, 3]);  //[1, 2, 3, 1]
+            pushOneToArray();  //[1]
+          </pre>
+          <span><em>This seems a clever way to do this but it's actually quite dangerous.</em></span>
+          <p>This technique provides a default parameter in case users call it without the needed parameter. In the above example, if the user forgets to provide the parameter, arr will be undefined therefore the expression arr || [] will be short-circuited to []. However, this is the potential source for bug and inconsistent behavior later when the program scaling bigger. Since short-circuiting relies on the truthy and falsy property of the value, many values which hold falsy value like 0 or '' can trigger the same behavior, therefore making a bug comes out of nowhere. </p>
+          <p>And ES6 came with a solution for that which is default parameters. Here is its syntax and how it's work:</p>
+          <pre class="prettyprint">
+            function pushOneToArray(array = []) {
+              array.push(1);
+              console.log(array)
+          }
+          
+          pushOneToArray([1, 2, 3]);  //[1, 2, 3, 1]
+          pushOneToArray();  //[1]
+          </pre>
+          <span><em>More consise and less bugs.</em></span>
+          <p>If the user doesn't provide the needed parameter, the function will still be executed with the default parameter we prepare beforehand, which in this case is an empty array.</p>
           <div class="popup-modal__close-button">
             <i class="fas fa-times-circle"></i>
           </div>

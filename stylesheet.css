@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Milkshake";
-  src: url("./Milkshake.otf") format("opentype");
+  src: url("./fonts/Milkshake.otf") format("opentype");
 }
 
 /* Pretty printing styles. Used with prettify.js. */
@@ -297,12 +297,13 @@ body {
   justify-content: center;
   align-items: center;
   animation: modalOpen 0.6s ease-out;
+  z-index: 100;
 }
 
 .popup-modal__close-button {
   position: absolute;
-  top: 5%;
-  right: 3%;
+  top: 10%;
+  right: 6%;
   font-size: 30px;
   opacity: 0.5;
 }
@@ -319,7 +320,6 @@ body {
   background-color: white;
   padding: 0px 55px;
   border-radius: 8px;
-  position: relative;
   box-shadow: 8px 12px rgba(0, 0, 0, 0.3);
   max-height: 2000px;
   overflow: scroll;

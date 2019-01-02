@@ -133,7 +133,7 @@ const DataController = (() => {
     },
     {
       question: "What is the result of the below <em>console.log</em>",
-      codeImage: "./code-question-1.png",
+      codeImage: "./img/code-question-1.png",
       answerContents: ["2", "1", "3", "Result in an error"],
       correctAnswer: "Result in an error",
       correctAnswerIndex: 3
@@ -152,14 +152,14 @@ const DataController = (() => {
     },
     {
       question: "What is the result of the below <em>console.log</em> ?",
-      codeImage: "./code-question-3.png",
+      codeImage: "./img/code-question-3.png",
       answerContents: ["Masters", "undefined", `{degree: 'Master'}`, "null"],
       correctAnswer: "Masters",
       correctAnswerIndex: 0
     },
     {
       question: "What is the result of the below <em>console.log</em> ?",
-      codeImage: "./code-question-4.png",
+      codeImage: "./img/code-question-4.png",
       answerContents: [
         "[1, 2, 3]",
         "[3, 4, 5]",
