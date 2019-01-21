@@ -381,6 +381,11 @@ const CentralController = ((UIController, DataController) => {
           "none"
         );
         UIController.setStyleAttributeOfAnElement(
+          document.getElementsByClassName("quiz__start-button")[0],
+          "display",
+          "none"
+        );
+        UIController.setStyleAttributeOfAnElement(
           document.getElementsByClassName("quiz__main-content")[0],
           "display",
           "flex"
